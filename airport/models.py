@@ -48,6 +48,10 @@ class Airplane(models.Model):
     )
     image = models.ImageField(null=True, upload_to=airplane_image_path)
 
+    @property
+    def capacity(self):
+        return self.rows * self.seats_in_row
+
     def __str__(self):
         return self.name
 
