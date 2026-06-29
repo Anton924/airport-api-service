@@ -129,17 +129,17 @@ class FlightViewSet(viewsets.ModelViewSet):
             )
         )
         route = self.request.query_params.get("route")
-        departure_data = self.request.query_params.get("departure_data")
+        departure_date = self.request.query_params.get("departure_date")
         source_city = self.request.query_params.get("source_city")
         destination_city = self.request.query_params.get("destination_city")
 
         if route:
             queryset = queryset.filter(route__in=params_to_int(route))
-        if departure_data:
-            departure_data = datetime.datetime.strptime(
-                departure_data, "%d/%m/%y"
+        if departure_date:
+            departure_date = datetime.datetime.strptime(
+                departure_date, "%d/%m/%y"
             )
-            queryset = queryset.filter(departure_time__date=departure_data)
+            queryset = queryset.filter(departure_time__date=departure_date)
         if source_city:
             queryset = queryset.filter(
                 route__source__closest_big_city=source_city
@@ -170,7 +170,7 @@ class FlightViewSet(viewsets.ModelViewSet):
                 ],
             ),
             OpenApiParameter(
-                name="departure_data",
+                name="departure_date",
                 type=str,
                 description="Filter flights by departure date",
                 required=False,
