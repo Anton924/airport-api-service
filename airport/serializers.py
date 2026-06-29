@@ -222,7 +222,7 @@ class TicketCreateSerializer(serializers.ModelSerializer):
 
 
 class OrderCreateSerializer(serializers.ModelSerializer):
-    tickets = TicketCreateSerializer(many=True)
+    tickets = TicketCreateSerializer(many=True, allow_empty=False)
 
     def create(self, validated_data):
         with transaction.atomic():
