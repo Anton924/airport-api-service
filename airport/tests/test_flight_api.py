@@ -185,7 +185,7 @@ class AuthorizedUser(TestCase):
             datetime.datetime(2026, 6, 28, 14, 30))
         )
 
-        res = self.client.get(FLIGHT_URL, data={"departure_data": "27/06/26"})
+        res = self.client.get(FLIGHT_URL, data={"departure_date": "27/06/26"})
         self.assertEqual(len(res.data["results"]), 1)
         self.assertEqual(res.data["results"][0].get("id"), flight_1.pk)
         self.assertNotEqual(res.data["results"][0].get("id"), flight_2.pk)
