@@ -63,8 +63,8 @@ class AirplaneType(models.Model):
 def airplane_image_path(instance: "Airplane", filename: str):
     filename = (
         f"{slugify(instance.name)}-"
-        f"{uuid.uuid4()}" +
-        pathlib.Path(filename).suffix
+        f"{uuid.uuid4()}"
+        + pathlib.Path(filename).suffix
     )
     return pathlib.Path("uploads/airplanes") / filename
 
@@ -198,8 +198,8 @@ class Ticket(models.Model):
             )
 
         if not (
-            0 < row <= flight.airplane.rows and
-            0 < seat <= flight.airplane.seats_in_row
+            0 < row <= flight.airplane.rows
+            and 0 < seat <= flight.airplane.seats_in_row
         ):
             raise error_to_raise(
                 detail=f"Seat has to be in range: 1 to "

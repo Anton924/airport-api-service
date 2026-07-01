@@ -123,9 +123,8 @@ class FlightViewSet(viewsets.ModelViewSet):
             .prefetch_related("crew")
             .annotate(
                 tickets_available=(
-                        F("airplane__rows") * F("airplane__seats_in_row")
-                    )
-                - Count("tickets")
+                    F("airplane__rows") * F("airplane__seats_in_row")
+                ) - Count("tickets")
             )
         )
         route = self.request.query_params.get("route")
