@@ -15,6 +15,7 @@ jobs:
 
     env:
       DJANGO_SETTINGS_MODULE: airport_api_service.settings.dev
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
 
     steps:
       - name: Checkout repo
