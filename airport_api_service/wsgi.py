@@ -11,6 +11,9 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'airport_api_service.settings.prod')
+os.environ.setdefault(
+    'DJANGO_SETTINGS_MODULE',
+    'airport_api_service.settings.prod'
+)
 
 application = get_wsgi_application()
